@@ -1216,13 +1216,8 @@
             const hRatio = canvas.width / img.width;
             const vRatio = canvas.height / img.height;
             
-            // Revert canvas-2 to the original max ratio, while keeping canvas-1 responsive for mobile portrait
-            let ratio;
-            if (canvas.id === 'canvas-2') {
-                ratio = Math.max(hRatio, vRatio);
-            } else {
-                ratio = (window.innerWidth < window.innerHeight) ? Math.min(hRatio, vRatio) : Math.max(hRatio, vRatio);
-            }
+            // Use max ratio for both canvases to ensure the animation scales to cover the entire mobile screen
+            const ratio = Math.max(hRatio, vRatio);
             
             const centerShift_x = (canvas.width - img.width * ratio) / 2;
             const centerShift_y = (canvas.height - img.height * ratio) / 2;
